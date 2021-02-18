@@ -6,6 +6,7 @@
 
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
   </head>
   <body>
     <h1><%= title %></h1>
@@ -17,7 +18,9 @@
         <% for (item of items) { %>
           <% if (!item.isDone) { %>
             <li class="list-group-item">
-              <a class="text-muted" href ="/remove/<%= item.id %>">✘</a>
+              
+
+              <a class="text-muted" href ="/remove/<%= item.id %>"><i class="fas fa-times"></i></a>
               
               <!--
                 Il ne se modifie pas si c'est la balise p que 
@@ -25,7 +28,7 @@
               -->
               <a class="text-muted" href="/update/<%= item.id %>"><p style="display: inline-block;"><%= item.text %></p></a>
 
-              <a class="text-muted" href ="/doneItem/<%= item.id %>">✔</a>
+              <a class="text-muted" href ="/doneItem/<%= item.id %>"><i class="fas fa-check"></i></a>
             </li>
           <% } %>
         <% } %>
