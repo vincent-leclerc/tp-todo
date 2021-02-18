@@ -4,18 +4,26 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   </head>
   <body>
     <h1><%= title %></h1>
 
-    <form action="/update/<%= item.id %>/done" method="post">
-      <label>Texte : </label>
-      <input type="text" name="text" value="<%= item.text %>">
-      <button type="submit">Valider</button>
+    <form action="/update/<%= item.id %>/done" method="post" class="row g-3">
+      <div class="col-auto">
+        <input type="text" readonly class="form-control-plaintext" value="Texte :" style="width: 70px;">
+      </div>
+      <div class="col-auto">
+        <input type="text" name="text" class="form-control" value="<%= item.text %>">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Valider</button>
+      </div>
     </form>
 
     <br>
 
-    <a href="/">Retour</a>
+    <a class="btn btn-primary" href="/">Retour</a>
   </body>
 </html>

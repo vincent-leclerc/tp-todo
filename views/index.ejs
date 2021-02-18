@@ -4,38 +4,46 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   </head>
   <body>
     <h1><%= title %></h1>
 
     <div class="item">
-      <ul>
+      <ul class="list-group">
         <% for (item of items) { %>
           <% if (!item.isDone) { %>
-            <li>
-              <a href ="/remove/<%= item.id %>">✘</a>
+            <li class="list-group-item">
+              <a class="text-muted" href ="/remove/<%= item.id %>">✘</a>
               
               <!--
                 Il ne se modifie pas si c'est la balise p que 
                 je modifie dans style.css ou dans un id ou une classe ?? 
               -->
-              <a href="/update/<%= item.id %>"><p style="display: inline-block;"><%= item.text %></p></a>
+              <a class="text-muted" href="/update/<%= item.id %>"><p style="display: inline-block;"><%= item.text %></p></a>
 
-              <a href ="/doneItem/<%= item.id %>">✔</a>
+              <a class="text-muted" href ="/doneItem/<%= item.id %>">✔</a>
             </li>
           <% } %>
         <% } %>
       </ul>
     </div>
 
-    <form action="/" method="post">
-      <label>Que dois-je faire ?</label>
-      <input type="text" name="item">
-      <button type="submit">Valider</button>
+    <form action="/" method="post" class="row g-3">
+      <div class="col-auto">
+        <input type="text" readonly class="form-control-plaintext" value="Que dois-je faire ?">
+      </div>
+      <div class="col-auto">
+        <input type="text" name="item" class="form-control">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Valider</button>
+      </div>
     </form>
 
     <br>
 
-    <a href="/allItemsDone">Voir ma ToDoList faite</a>
+    <a href="/allItemsDone" class="btn btn-primary">Voir ma ToDoList faite</a>
   </body>
 </html>
