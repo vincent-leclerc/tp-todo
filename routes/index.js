@@ -81,4 +81,31 @@ router.post('/update/:id/done', (req, res) => {
   updateItem();
 });
 
+router.get('/allItemsDone', function(req, res, next) {
+  const findAllItemsDone = async () => {
+    try {
+      const items = await Item.find({isDone: "true" }).exec();
+      res.render('allItemsDone', { title: 'Ma ToDoList faite', items: items });
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+  findAllItemsDone();
+});
+
+router.get('/doneItem/:id', function(req, res, next) {
+  const updateItemSetDone = async () => {
+    try {
+      const updatedItem = await Item.updateOne({ _id: req.params.id }, { $set: { isDone: true }}).exec();
+      const items = await Item.find({}).exec();
+      res.render('./', { title: 'Ma ToDoList', items: items });
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+  updateItemSetDone();
+});
+
 module.exports = router;

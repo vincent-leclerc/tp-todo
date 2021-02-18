@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <div class="item">
+      <ul>
+        <% for (item of items) { %>
+          <% if (item.isDone) { %>
+            <li>
+              <p style="display: inline-block;"><%= item.text %></p>
+            </li>
+          <% } %>
+        <% } %>
+      </ul>
+    </div>
+
+    <a href="/">Retour</a>
+  </body>
+</html>

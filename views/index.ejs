@@ -14,11 +14,14 @@
           <% if (!item.isDone) { %>
             <li>
               <a href ="/remove/<%= item.id %>">✘</a>
-              <!-- 
+              
+              <!--
                 Il ne se modifie pas si c'est la balise p que 
                 je modifie dans style.css ou dans un id ou une classe ?? 
               -->
               <a href="/update/<%= item.id %>"><p style="display: inline-block;"><%= item.text %></p></a>
+
+              <a href ="/doneItem/<%= item.id %>">✔</a>
             </li>
           <% } %>
         <% } %>
@@ -30,5 +33,9 @@
       <input type="text" name="item">
       <button type="submit">Valider</button>
     </form>
+
+    <br>
+
+    <a href="/allItemsDone">Voir ma ToDoList faite</a>
   </body>
 </html>
