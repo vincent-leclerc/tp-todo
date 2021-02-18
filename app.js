@@ -14,7 +14,7 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Mongoose connection
-mongoose.connect("mongodb://localhost:27017/todo-tp", { 
+mongoose.connect("mongodb://" + process.env.HOST + ":"+ process.env.DB_PORT +"/"+process.env.DATABASE, { 
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
