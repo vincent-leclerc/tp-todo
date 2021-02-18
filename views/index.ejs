@@ -3,17 +3,30 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
   </head>
   <body>
     <h1><%= title %></h1>
 
-    <% for (item of items) { %>
-      <div class="item">
-        <p><%=  item.text  %></p>
-      </div>
-      <% } %>
+    <div class="item">
+      <ul>
+        <% for (item of items) { %>
+          <% if (!item.isDone) { %>
+            <li>
+              <a href ="/remove/<%= item.id %>">✘</a>
+              <!-- 
+                Il ne se modifie pas si c'est la balise p que 
+                je modifie dans style.css ou dans un id ou une classe ?? 
+              -->
+              <a href="/update/<%= item.id %>"><p style="display: inline-block;"><%= item.text %></p></a>
+            </li>
+          <% } %>
+        <% } %>
+      </ul>
+    </div>
 
     <form action="/" method="post">
+      <label>Que dois-je faire ?</label>
       <input type="text" name="item">
       <button type="submit">Valider</button>
     </form>

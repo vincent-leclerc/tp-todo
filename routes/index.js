@@ -10,7 +10,6 @@ router.get('/', function(req, res, next) {
   const findAllItems = async () => {
     try {
       const items = await Item.find({}).exec();
-      console.log(items);
       res.render('index', { title: 'Ma ToDoList', items: items });
     }
     catch (err) {
@@ -39,7 +38,47 @@ router.post('/', (req, res) => {
     }
   }
   insertItem();
-  
+});
+
+router.get('/remove/:id', (req, res) => {
+  const removeItem = async () => {
+    try {
+      await Item.findByIdAndDelete(req.params.id).exec();
+      console.log("Successfully delete toDo");
+      res.redirect("/");
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+  removeItem();
+});
+
+router.get('/update/:id', (req, res) => {
+  const findItemForUpdate = async () => {
+    try {
+      const item = await Item.findById(req.params.id).exec();
+      res.render('update', { item: item, title: 'Modifier la tâche' });
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+  findItemForUpdate();
+});
+
+router.post('/update/:id/done', (req, res) => {
+  const updateItem = async () => {
+    try {
+      const updatedItem = await Item.updateOne({ _id: req.params.id }, { $set: { text: req.body.text }}).exec();
+      const items = await Item.find({}).exec();
+      res.render('./', { title: 'Ma ToDoList', items: items });
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+  updateItem();
 });
 
 module.exports = router;

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <form action="/update/<%= item.id %>/done" method="post">
+      <label>Texte : </label>
+      <input type="text" name="text" value="<%= item.text %>">
+      <button type="submit">Valider</button>
+    </form>
+  </body>
+</html>
